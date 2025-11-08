@@ -17,7 +17,6 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <RepositoryType>git</RepositoryType>
-    <!-- Exclude source code from package and avoid embedding source text -->
     <IncludeSource>false</IncludeSource>
     <EmbedUntrackedSources>false</EmbedUntrackedSources>
   </PropertyGroup>
