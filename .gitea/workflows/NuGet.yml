@@ -2,12 +2,8 @@ name: Deploy NuGet Package
 
 on:
   push:
-    #tags:
-    #  - 'v*'
-    branches:
-      - release/0.1.0
-
-
+    tags:
+      - 'v*'
 
 jobs:
   deploy:
@@ -16,22 +12,25 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
 
       - name: Install .NET SDK
-        run: |
-          wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
-          chmod +x dotnet-install.sh
-          ./dotnet-install.sh --channel 8.0
-          export PATH=$PATH:$HOME/.dotnet
-
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'
+      
       - name: Restore packages
-        run: dotnet restore src/MBUtils.csproj
+        run: dotnet restore
 
       - name: Build project
-        run: dotnet build src/MBUtils.csproj --no-restore --configuration Release
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test project
+        run: dotnet test --no-build --configuration Release
 
       - name: Pack project
-        run: run: dotnet pack src/MBUtils.csproj --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=0.1.0 --output ./output
+        run: dotnet pack src/MBUtils.csproj --no-restore --no-build --configuration Release --include-symbols --output ./output
 
       - name: Push packages
-        run: dotnet nuget push ./output/*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ secrets.NUGET_SOURCE_URL }}
+        run: dotnet nuget push ./output/*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ secrets.NUGET_SOURCE_URL }} --skip-duplicate
