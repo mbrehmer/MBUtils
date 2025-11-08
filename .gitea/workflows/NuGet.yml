@@ -13,13 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          fetch-depth: 0
           ref: ${{ github.ref }}
 
       - name: Install .NET SDK
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
-      
+
       - name: Restore packages
         run: dotnet restore
 
@@ -30,7 +31,16 @@ jobs:
         run: dotnet test --no-build --configuration Release
 
       - name: Pack project
-        run: dotnet pack src/MBUtils.csproj --no-restore --no-build --configuration Release --include-symbols --output ./output
+        run: |
+          dotnet pack src/MBUtils.csproj \
+            --no-restore --no-build \
+            --configuration Release \
+            --include-symbols \
+            --output ./output
 
-      - name: Push packages
-        run: dotnet nuget push ./output/*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ secrets.NUGET_SOURCE_URL }} --skip-duplicate
+      - name: Push packages to Gitea
+        run: |
+          dotnet nuget push ./output/*.nupkg \
+            --source ${{ secrets.NUGET_SOURCE_URL }} \
+            --api-key ${{ secrets.NUGET_AUTH_TOKEN }} \
+            --skip-duplicate
