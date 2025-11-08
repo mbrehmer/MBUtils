@@ -12,6 +12,14 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>MBUtilities is a collection of utility functions and classes for .NET applications.</Description>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <DebugType>portable</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <RepositoryType>git</RepositoryType>
+    <!-- Exclude source code from package and avoid embedding source text -->
+    <IncludeSource>false</IncludeSource>
+    <EmbedUntrackedSources>false</EmbedUntrackedSources>
   </PropertyGroup>
 
 </Project>
