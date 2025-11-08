@@ -7,13 +7,13 @@ A small utility library for .NET with focused, reusable building blocks.
 MBUtils is published as a NuGet package.
 
 - Package ID: `MBUtils`
-- Current version: `1.0.0`
+- Current version: `0.1.0`
 - Target frameworks: `net8.0`, `netstandard2.0`
 
 Install using your preferred method, for example:
 
 ```pwsh
-dotnet add package MBUtils --version 1.0.0
+dotnet add package MBUtils --version 0.1.0
 ```
 
 ## Design Patterns
