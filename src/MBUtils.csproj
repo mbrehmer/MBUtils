@@ -5,10 +5,10 @@
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-    <PackageId>MBUtilities</PackageId>
+    <PackageId>MBUtils</PackageId>
     <Version>0.1.0</Version>
     <Authors>Martin Brehmer</Authors>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>MBUtilities is a collection of utility functions and classes for .NET applications.</Description>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
@@ -16,7 +16,9 @@
     <DebugType>portable</DebugType>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <RepositoryType>git</RepositoryType>
+    <IncludeRepositoryUrl>false</IncludeRepositoryUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <RepositoryType></RepositoryType>
     <IncludeSource>false</IncludeSource>
     <EmbedUntrackedSources>false</EmbedUntrackedSources>
   </PropertyGroup>
